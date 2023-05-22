@@ -1,5 +1,5 @@
 <?php 
-    $people = getPeople($_GET['id']);
+    $inhoud = getId($_GET['id']);
 ?>
 
 <!DOCTYPE html>
@@ -11,10 +11,10 @@
     <title>Document</title>
 </head>
 <body>
-    <?php foreach($people as $person){ ?>
-        <h1><?= $person['name'] ?></h1>
-        <p><?= $person['description'] ?></p>
-        <img src=images/<?= $person['image']?> alt="ellie"  >
+    <?php foreach($inhoud as $inhoud){ ?>
+        <h1><?= $inhoud['name'] ?></h1>
+        <p><?= $inhoud['description'] ?></p>
+        <img src=<?= $inhoud['image']?> alt="image"  >
 
     <?php } ?>
 
@@ -22,10 +22,10 @@
 </html>
 
 <?php
-function getPeople($id){
+function getId($id){
 
 // maak een verbinding
-    $connection = connect();
+    $connection = connect($id);
 
 // maak een query
     $query = "SELECT * FROM onderwerpen WHERE id = $id";
